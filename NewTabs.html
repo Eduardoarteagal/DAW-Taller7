@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Nueva Pestaña</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style/styles.css" rel="stylesheet">
+    <script>
+        function agregar() {
+        // Obtener el formulario y la tabla
+        const form = document.querySelector('form');
+        const table = document.querySelector('table tbody');
+        
+        // Añadir evento de submit al formulario
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          // Obtener valores del formulario
+          const nombre = document.getElementById('exampleInputtext1').value;
+          const email = document.getElementById('exampleInputemail1').value;
+          const rangoSelect = form.querySelector('select');
+          const rango = rangoSelect.options[rangoSelect.selectedIndex].text;
+        // Crear nueva fila en la tabla
+        const newRow = table.insertRow();
+          newRow.insertCell(0).innerText = table.rows.length;
+          newRow.insertCell(1).innerText = nombre;
+          newRow.insertCell(2).innerText = email;
+          newRow.insertCell(3).innerText = rango;
+          
+          // Limpiar formulario
+          form.reset();
+        });
+      }
+
+      // Ejecutar la función agregar cuando se cargue la página
+      window.onload = agregar;
+    </script>
+  </head>
+  <body>
+    <form>
+        <div class="mb-3">
+          <label for="exampleInputtext1" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="emailHelp">
+          <div id="textHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputemail1" class="form-label">Email</label>
+          <input type="email" class="form-control" id="exampleInputemail1">
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Rango de edad</option>
+                <option value="1">1-20 años</option>
+                <option value="2">20-50 años</option>
+                <option value="3">50-80 años</option>
+              </select>
+        </div>
+        <button onclick="agregar();" type="submit" class="btn btn-primary">Agregar</button>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Rango</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+        </tbody>
+      </table>  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
